@@ -34,6 +34,19 @@
             background: rgba(37, 99, 235, 0.3);
             color: white;
         }
+
+        /* Smooth Transition for NAD Toggle */
+        #nad-content {
+            transition: all 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #nad-content.visible {
+            max-height: 500px;
+            opacity: 1;
+            padding-top: 2rem;
+        }
     </style>
 </head>
 <body class="bg-[#0a0a0b] text-white overflow-x-hidden">
@@ -343,17 +356,53 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 border-t border-white/5">
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-12">
-            <div class="text-2xl font-serif font-black uppercase tracking-tighter">
-                Roger<span class="text-blue-600">.</span>
+    <footer class="py-20 border-t border-white/5 bg-[#0a0a0b]">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 space-y-20">
+            
+            <!-- Trigger Section -->
+            <div class="reveal pt-10 text-center space-y-12">
+                <button id="nad-trigger" class="bg-blue-600 text-white px-10 py-5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 group">
+                    GET YOURS
+                </button>
+
+                <!-- NAD Production Contact Component -->
+                <div id="nad-content" class="space-y-4">
+                    <h3 class="text-xs font-black uppercase tracking-[0.4em] text-blue-600">from NAD PRODUCTION</h3>
+                    <div class="flex flex-wrap justify-center gap-8 pt-4">
+                        <a href="https://wa.me/250786487234" target="_blank" class="group flex items-center gap-3 text-white/40 hover:text-white transition-colors">
+                            <i data-lucide="message-circle" class="w-5 h-5 group-hover:text-blue-500"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">WhatsApp</span>
+                        </a>
+                        <a href="mailto:nadjibullahu@gmail.com" class="group flex items-center gap-3 text-white/40 hover:text-white transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5 group-hover:text-blue-500"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Email</span>
+                        </a>
+                        <a href="https://www.instagram.com/iamnad_/" target="_blank" class="group flex items-center gap-3 text-white/40 hover:text-white transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5 group-hover:text-blue-500"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Instagram</span>
+                        </a>
+                    </div>
+                    <div class="pt-8">
+                        <a href="https://booknadprod.web.app/" target="_blank" class="inline-flex items-center gap-4 bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-600 text-white px-8 py-4 rounded-full transition-all group">
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em]">Book Us Now</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 text-center">
-                © 2026 Iradukunda Thierry Roger • Built for Excellence
-            </p>
-            <div class="flex gap-10">
-                <a href="https://www.instagram.com/t_roger_250/" target="_blank" class="text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">Instagram</a>
-                <a href="https://wa.me/250781065953" target="_blank" class="text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">WhatsApp</a>
+
+            <!-- Bottom Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12 pt-10 border-t border-white/5">
+                <div class="text-2xl font-serif font-black uppercase tracking-tighter">
+                    Roger<span class="text-blue-600">.</span>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/20 text-center">
+                    © 2026 NAD PRODUCTION • Built for Excellence
+                </p>
+                <div class="flex gap-10">
+                    <a href="https://www.instagram.com/t_roger_250/" target="_blank" class="text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">Instagram</a>
+                    <a href="https://wa.me/250781065953" target="_blank" class="text-[10px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">WhatsApp</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -410,6 +459,19 @@
 
         document.querySelectorAll('.reveal').forEach(el => {
             revealObserver.observe(el);
+        });
+
+        // NAD Production Content Toggle
+        const nadTrigger = document.getElementById('nad-trigger');
+        const nadContent = document.getElementById('nad-content');
+
+        nadTrigger.addEventListener('click', () => {
+            nadContent.classList.toggle('visible');
+            if (nadContent.classList.contains('visible')) {
+                nadTrigger.innerText = 'HIDE OPTIONS';
+            } else {
+                nadTrigger.innerText = 'GET YOURS';
+            }
         });
     </script>
 </body>
